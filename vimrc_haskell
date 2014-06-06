@@ -1,0 +1,38 @@
+" Haskell configurations
+
+" Setup
+" > cabal install hlint ghc-mod
+" > cd ~/.vim/bundle/vimproc && make -f make_unix.mak
+
+" Vundle bundles
+" Dependency of neco-ghc
+Bundle 'Shougo/neocomplcache.vim'
+Bundle 'airblade/vim-gitgutter'
+
+Bundle 'dag/vim2hs'
+Bundle 'merijn/haskellFoldIndent'
+Bundle 'eagletmt/neco-ghc'
+Bundle 'eagletmt/ghcmod-vim'
+
+" Dependency of ghcmod-vim
+Bundle 'eagletmt/tinytest'
+Bundle 'Shougo/vimproc'
+
+
+let $PATH = $PATH . ':' . expand("~/.cabal/bin")
+
+au FileType haskell noremap <buffer> <F2> :GhcModType<CR>
+au FileType haskell noremap <buffer> <silent> <F3> :GhcModTypeClear<CR>
+au FileType haskell setlocal number
+au FileType haskell setlocal foldmethod=manual
+au FileType haskell setlocal omnifunc=necoghc#omnifunc
+
+au BufNewFile,BufRead *.dump-cmm set filetype=c
+au BufNewFile,BufRead *.hs,*.hsc,*.lhs,*.dump-simpl set filetype=haskell
+au BufNewFile,BufRead *.lhs set syntax=lhaskell
+
+autocmd BufWritePost *.hs GhcModCheckAndLintAsync
+autocmd BufWritePost *.hsc GhcModCheckAndLintAsync
+
+let g:syntastic_haskell_checkers = ["ghc_mod","hlint"]
+
