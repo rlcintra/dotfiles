@@ -36,3 +36,12 @@ autocmd BufWritePost *.hsc GhcModCheckAndLintAsync
 
 let g:syntastic_haskell_checkers = ["ghc_mod","hlint"]
 
+" This assumes that ghc is in your path, if it is not, or you
+" wish to use a specific version of ghc, then please change
+" the ghc below to a full path to the correct one
+au BufEnter *.hs compiler ghc
+
+" For this section both of these should be set to your
+" browser and ghc of choice
+let g:haddock_browser = "/usr/bin/chromium"
+let g:ghc = "/usr/bin/ghc"
