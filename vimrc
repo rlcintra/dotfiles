@@ -1,7 +1,7 @@
 set nocompatible
 filetype off
 syntax on
-set showcmd "shows information about the current command
+set directory=~/temp// "sets the directory for swap files
 
 " Vundle
 " Assure you have installed Vundle (bin/installVundle.sh)
@@ -18,21 +18,24 @@ Bundle 'flazz/vim-colorschemes'
 Bundle 'bling/vim-airline'
 Bundle 'tpope/vim-fugitive'
 
+" Identation
 filetype plugin indent on
+set expandtab "converts tabs to space
+set tabstop=4 "sets how many spaces for tabs
+set shiftwidth=4 "number of spaces used for auto-indent
 
-set et "expandtab: converts tabs to space
-set ts=4 "tabstop: sets how many spaces for tabs
-set sw=4 "shiftwidth: number of spaces used for auto-indent
-
+" UI
+set showcmd "shows information about the current command
 set laststatus=2 "displays the status line always
 
 nmap \l :setlocal number!<CR>
 nmap \o :set paste!<CR>
 
-set incsearch
-set ignorecase
-set smartcase
-set hlsearch
+"Search
+set incsearch "show search matches as you type
+set ignorecase "ignore case when searching
+set smartcase "ignore case if search pattern is all lowercase, case-sensitive otherwise
+set hlsearch "highligh search items
 nmap \q :nohlsearch<CR>
 
 if $TERM == "xterm-256color" || $TERM == "screen-256color" || $COLORTERM == "gnome-terminal"
