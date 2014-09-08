@@ -2,6 +2,7 @@ set nocompatible
 filetype off
 syntax on
 set directory=~/temp// "sets the directory for swap files
+set autowrite   "writes changes to file when changing tabs/buffers
 
 " Vundle
 " Assure you have installed Vundle (bin/installVundle.sh)
