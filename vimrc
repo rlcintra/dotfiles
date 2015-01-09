@@ -4,6 +4,11 @@ syntax on
 set directory=~/temp// "sets the directory for swap files
 set autowrite   "writes changes to file when changing tabs/buffers
 
+" Cursor shape in different modes
+" Konsole :
+"let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+"let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+
 " Vundle
 " Assure you have installed Vundle (bin/installVundle.sh)
 set rtp+=~/.vim/bundle/vundle/
@@ -63,6 +68,7 @@ colorscheme zenburn
 " vim-airline setup
 let g:airline#extensions#tabline#enabled = 1 "enables the buffer/tab line on the top
 let g:airline_powerline_fonts = 1 "required to render powerline fonts
+let g:airline#extensions#tabline#buffer_nr_show = 1 "whether buffer names are shown
 set ttimeoutlen=10 "removes the delays from going from insert to normal mode
 
 " neocomplcache setup
