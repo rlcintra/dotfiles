@@ -2,6 +2,8 @@
 # ~/.bashrc
 #
 
+set -o vi
+
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
@@ -41,4 +43,6 @@ export M2=$M2_HOME/bin
 
 export PATH=$PATH:$M2
 export PATH=$PATH:~/.cabal/bin
+
+export KARAF_HOME_DEV=/home/rafael/temp/apache-karaf
 
