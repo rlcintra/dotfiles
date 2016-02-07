@@ -2,6 +2,8 @@
 # ~/.bashrc
 #
 
+set -o vi
+
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
@@ -43,4 +45,6 @@ PS1='[\u@\h \W]\$ '
 #fi
 
 export PATH=$PATH:/home/rcintra/.cabal/bin
+
+export KARAF_HOME_DEV=/home/rafael/temp/apache-karaf
 
