@@ -6,6 +6,7 @@
 
 " Vundle bundles
 " Dependency of neco-ghc
+Bundle 'lukerandall/haskellmode-vim'
 Bundle 'Shougo/neocomplcache.vim'
 Bundle 'airblade/vim-gitgutter'
 
