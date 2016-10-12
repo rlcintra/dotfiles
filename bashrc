@@ -46,3 +46,6 @@ export PATH=$PATH:~/.cabal/bin
 
 export KARAF_HOME_DEV=/home/rafael/temp/apache-karaf
 
+. /etc/profile.d/vte.sh
+__vte_prompt_command
+

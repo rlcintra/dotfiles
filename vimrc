@@ -64,6 +64,8 @@ nmap \e :NERDTreeToggle<CR>
 
 " vim-colorschemes setup
 colorscheme zenburn
+"hi Normal ctermbg=none
+"hi NonText ctermbg=none
 
 " vim-airline setup
 let g:airline#extensions#tabline#enabled = 1 "enables the buffer/tab line on the top
