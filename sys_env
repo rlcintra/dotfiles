@@ -1,5 +1,5 @@
-export JAVA_HOME=/opt/jdk1.8.0_66/jre
-export JDK_HOME=/opt/jdk1.8.0_66
+export JAVA_HOME=/opt/jdk/jre
+export JDK_HOME=/opt/jdk
 export M2_HOME=/opt/maven
 export M2=$M2_HOME/bin
 

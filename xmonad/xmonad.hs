@@ -138,7 +138,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- Volume
     , ((modm              , xK_Page_Up  ), raiseVolume 3 >> return())
     , ((modm              , xK_Page_Down), lowerVolume 3 >> return())
-    , ((modm              , xK_End   ), toggleMute    >> return())
+    , ((modm              , xK_End      ), toggleMute    >> return())
 
     -- Spotify
     , ((modm              , xK_Delete  ), spawn "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause")
@@ -148,6 +148,12 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- ScratchPad
     --, ((modm              , xK_s     ), scratchpadSpawnActionTerminal $ myTerminal ++ " -r scratchpad")
     , ((modm              , xK_s     ), scratchpadSpawnActionTerminal $ "xterm")
+
+    -- xrandr (for Lenovo X260)
+    , ((modm .|. shiftMask, xK_F1     ), spawn "~/.screenlayout/laptop.sh")
+    , ((modm .|. shiftMask, xK_F2     ), spawn "~/.screenlayout/dock_displayport.sh")
+    , ((modm .|. shiftMask, xK_F3     ), spawn "~/.screenlayout/standup_desk.sh")
+    
     ]
     ++
 

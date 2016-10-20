@@ -44,7 +44,7 @@ PS1='[\u@\h \W]\$ '
 #    __vte_prompt_command
 #fi
 
-export PATH=$PATH:/home/rcintra/.cabal/bin
+export PATH=$PATH:~/.cabal/bin
 
 export KARAF_HOME_DEV=/home/rafael/temp/apache-karaf
 

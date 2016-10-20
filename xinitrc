@@ -44,7 +44,7 @@ xcompmgr -c &
 # wallpaper
 # Use --no-xinerama to treat the whole X display as one screen when setting wallpapers.
 #feh --no-xinerama --bg-center /home/rcintra/temp/desert_dumping_my_3840x1080_1200_collection_3840x1080_wallpaper_Wallpaper_3840x1080_www.wallpaperswa.com.jpg
-feh --no-xinerama --bg-center /home/rcintra/temp/wallpaper/minimalist_metal_wallpaper__dual_screen_edition__by_malkowitch-d7tyhrb.jpg
+#feh --no-xinerama --bg-center /home/rcintra/temp/wallpaper/minimalist_metal_wallpaper__dual_screen_edition__by_malkowitch-d7tyhrb.jpg
 
 exec xmonad
  
