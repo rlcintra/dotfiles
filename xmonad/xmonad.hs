@@ -3,6 +3,7 @@ import XMonad.Actions.Volume
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.UrgencyHook
+import XMonad.Layout.NoBorders
 import XMonad.Layout.Tabbed
 import XMonad.Util.Scratchpad
 import Data.Monoid
@@ -199,7 +200,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
-myLayout = tiled ||| Mirror tiled ||| Full ||| simpleTabbed
+myLayout = tiled ||| Mirror tiled ||| noBorders Full ||| noBorders simpleTabbed
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
