@@ -34,9 +34,13 @@ fi
 
 source ~/.sys_env
 
-setxkbmap -model pc104 -layout us -variant intl
+# keyboard configuration
+setxkbmap -model pc104 -layout us,us -variant ,intl -option 'grp:alt_caps_toggle'
 
-#dropboxd &
+# reminds keyboard layout per window
+kbdd
+
+dropbox-cli start &
 
 # compositing
 xcompmgr -c &
@@ -47,4 +51,4 @@ xcompmgr -c &
 feh --no-xinerama --bg-center /home/rcintra/temp/wallpaper/minimalist_metal_wallpaper__dual_screen_edition__by_malkowitch-d7tyhrb.jpg
 
 exec xmonad
- 
+

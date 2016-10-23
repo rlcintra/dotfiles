@@ -15,7 +15,8 @@ Config {
    --, template = "%StdinReader% }{ %multicpu% | %memory% | %dynnetwork% "
    --, template = "%multicpu% | %memory% | %dynnetwork% }{ %RJTT% | %date%"
    --, template = "%StdinReader% }{ %YBBN% | %multicpu% | %memory% * %swap% | %dynnetwork% | %default:Master% | %date% "
-   , template = "%StdinReader% }{ %YBBN% | %multicpu% | %memory% * %swap% | %dynnetwork% | %date% "
+   , template = "<fc=#aaaaaa><icon=/home/rcintra/images/icons/archlinux2.xbm/></fc> %StdinReader% }{ %YBBN% | %multicpu% | %memory% | %enp5s0% | <fc=#aaaaaa><icon=/home/rcintra/images/icons/key.xbm/></fc> %kbd% | %default:Master% | %date% "
+   --, template = "%StdinReader% }{ %YBBN% | %multicpu% | %memory% * %swap% | %dynnetwork% | %date% "
 
    -- general behavior
    , lowerOnStart =     True    -- send to bottom of window stack on start
@@ -46,17 +47,17 @@ Config {
                              ] 36000
 
         -- network activity monitor (dynamic interface resolution)
-        ,Run DynNetwork     [ "--template" , "<dev>: <tx>kB/s|<rx>kB/s"
-                             , "--Low"      , "1000"       -- units: kB/s
-                             , "--High"     , "5000"       -- units: kB/s
-                             , "--low"      , "darkgreen"
-                             , "--normal"   , "darkorange"
-                             , "--high"     , "darkred"
-                             , "--minwidth" , "3"
-                             ] 10
+        ,Run Network "enp5s0"  [ "--template" , "<fc=#aaaaaa><icon=icons/ethernet3.xbm/></fc> <tx>kB/s|<rx>kB/s"
+                               , "--Low"      , "1000"       -- units: kB/s
+                               , "--High"     , "5000"       -- units: kB/s
+                               , "--low"      , "darkgreen"
+                               , "--normal"   , "darkorange"
+                               , "--high"     , "darkred"
+                               , "--minwidth" , "3"
+                               ] 10
 
         -- cpu activity monitor
-        , Run MultiCpu       [ "--template" , "CPU:<autovbar>"
+        , Run MultiCpu       [ "--template" , "<fc=#aaaaaa><icon=/home/rcintra/images/icons/processor.xbm/></fc> <autovbar>"
                              , "--Low"      , "50"         -- units: %
                              , "--High"     , "85"         -- units: %
                              , "--low"      , "darkgreen"
@@ -66,7 +67,7 @@ Config {
                              ] 10
 
         -- memory usage monitor
-        , Run Memory         [ "--template" ,"Mem: <usedratio>%"
+        , Run Memory         [ "--template" ,"<fc=#aaaaaa><icon=/home/rcintra/.config/xmobar/icons/mem.xbm/></fc> <usedratio>%"
                              , "--Low"      , "20"        -- units: %
                              , "--High"     , "90"        -- units: %
                              , "--low"      , "darkgreen"
@@ -75,13 +76,14 @@ Config {
                              ] 10
 
         -- swap memory
-        , Run Swap          [] 10
+        -- , Run Swap          [] 10
 
         -- time and date indicator 
         --   (%F = y-m-d date, %a = day of week, %T = h:m:s time)
         , Run Date           "<fc=#ABABAB>%d/%m %H:%M</fc>" "date" 10 
 
         -- keyboard layout indicator
+        , Run Kbd               []
         -- , Run Kbd            [ ("us(dvorak)" , "<fc=#00008B>DV</fc>")
         --                      , ("us"         , "<fc=#8B0000>US</fc>")
         --                      ]
@@ -90,6 +92,8 @@ Config {
         , Run StdinReader
 
         -- volume
-        -- , Run Volume "default" "Master" [] 10
+        , Run Volume "default" "Master" [
+                                          "--template" , "<fc=#aaaaaa><icon=/home/rcintra/images/icons/speaker2.xbm/></fc> <volume>% <status>"
+                                        ] 10
         ]
 }
