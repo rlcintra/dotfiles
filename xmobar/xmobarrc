@@ -12,9 +12,6 @@ Config {
    -- layout
    , sepChar =  "%"   -- delineator between plugin names and straight text
    , alignSep = "}{"  -- separator between left-right alignment
-   --, template = "%StdinReader% }{ %multicpu% | %memory% | %dynnetwork% "
-   --, template = "%multicpu% | %memory% | %dynnetwork% }{ %RJTT% | %date%"
-   --, template = "%StdinReader% }{ %YBBN% | %multicpu% | %memory% * %swap% | %dynnetwork% | %default:Master% | %date% "
    , template = "<fc=#aaaaaa><icon=/home/rcintra/images/icons/archlinux2.xbm/></fc> %StdinReader% }{ %YBBN% | %pomobar% | %multicpu% | %memory% | %enp5s0% | <fc=#aaaaaa><icon=/home/rcintra/.config/xmobar/icons/key.xbm/></fc> %kbd% | %default:Master% | %date% "
    --, template = "%StdinReader% }{ %YBBN% | %multicpu% | %memory% * %swap% | %dynnetwork% | %date% "
 

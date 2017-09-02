@@ -141,7 +141,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- Volume
     , ((modm              , xK_Page_Up  ), raiseVolume 3 >> return())
     , ((modm              , xK_Page_Down), lowerVolume 3 >> return())
-    , ((modm              , xK_End   ), toggleMute    >> return())
+    , ((modm              , xK_End      ), toggleMute    >> return())
 
     -- Spotify
     , ((modm              , xK_Delete  ), spawn "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause")
