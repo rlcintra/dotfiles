@@ -34,6 +34,13 @@ fi
 
 source ~/.sys_env
 
+# setup display
+xrandr --setprovideroutputsource modesetting NVIDIA-0 --primary
+xrandr --auto
+xrandr --dpi 96
+# source ~/.screenlayout/laptop.sh
+
+
 # keyboard configuration
 setxkbmap -model pc104 -layout us,us -variant ,intl -option 'grp:alt_caps_toggle'
 
@@ -53,3 +60,4 @@ dropbox-cli start &
 #exec xmonad &> xmonad.log
 exec xmonad
 
+~/.screenlayout/laptop.sh

@@ -1,9 +1,11 @@
 import XMonad
 import XMonad.Actions.Volume
 import XMonad.Hooks.DynamicLog
+import XMonad.Hooks.ICCCMFocus
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.UrgencyHook
 import XMonad.Layout.NoBorders
+import XMonad.Layout.SimpleFloat
 import XMonad.Layout.Tabbed
 import XMonad.Util.Scratchpad
 import Data.Monoid
@@ -65,7 +67,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm,               xK_p     ), spawn "$(dmenu_path | yeganesh)")
 
     -- launch gmrun
-    , ((modm .|. shiftMask, xK_p     ), spawn "gmrun")
+    --, ((modm .|. shiftMask, xK_p     ), spawn "gmrun")
 
     -- close focused window
     , ((modm .|. shiftMask, xK_c     ), kill)
@@ -146,9 +148,18 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm              , xK_Home    ), spawn "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next")
     , ((modm              , xK_Insert  ), spawn "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous")
 
+    -- Pomobar
+    , ((modm  , xK_F5      ), spawn "dbus-send --print-reply --dest=org.pomobar /org/pomobar org.Pomobar.startTimerSwitch array:int16:25,10,5")
+    , ((modm  , xK_F6      ), spawn "dbus-send --print-reply --dest=org.pomobar /org/pomobar org.Pomobar.pauseResumeTimer")
+    , ((modm  , xK_F7      ), spawn "dbus-send --print-reply --dest=org.pomobar /org/pomobar org.Pomobar.timerAddMin int16:1")
+    , ((modm  , xK_F8      ), spawn "dbus-send --print-reply --dest=org.pomobar /org/pomobar org.Pomobar.timerAddMin int16:-1")
+
     -- ScratchPad
     --, ((modm              , xK_s     ), scratchpadSpawnActionTerminal $ myTerminal ++ " -r scratchpad")
     , ((modm              , xK_s     ), scratchpadSpawnActionTerminal $ "xterm")
+
+    -- Redshift (toggle on/off)
+    , ((modm .|. shiftMask, xK_F9     ), spawn "pkill -USR1 redshift")
 
     -- xrandr (for Lenovo X260)
     , ((modm .|. shiftMask, xK_F1     ), spawn "~/.screenlayout/laptop.sh")
@@ -205,7 +216,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
-myLayout = tiled ||| Mirror tiled ||| noBorders Full ||| noBorders simpleTabbed
+myLayout = tiled ||| Mirror tiled ||| noBorders Full ||| noBorders simpleTabbed ||| simpleFloat
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
@@ -273,7 +284,8 @@ myEventHook = mempty
 -- Perform an arbitrary action on each internal state change or X event.
 -- See the 'XMonad.Hooks.DynamicLog' extension for examples.
 --
-myLogHook = return ()
+-- myLogHook = return ()
+myLogHook = takeTopFocus
 
 ------------------------------------------------------------------------
 -- Startup hook

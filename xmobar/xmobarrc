@@ -1,7 +1,7 @@
 Config { 
 
    -- appearance
-     font =         "xft:Bitstream Vera Sans Mono:size=9:bold:antialias=true"
+     font =         "xft:Noto Mono:size=9:bold:antialias=true"
    --, bgColor =      "black"
    , bgColor =      "#292929"
    , fgColor =      "#646464"
@@ -12,7 +12,7 @@ Config {
    -- layout
    , sepChar =  "%"   -- delineator between plugin names and straight text
    , alignSep = "}{"  -- separator between left-right alignment
-     , template = " %StdinReader% }{ %YBBN% | %multicpu% | %memory% | %enp0s31f6% | %wlp4s0% | %battery0% %battery1% | <fc=#aaaaaa><icon=/home/rafael/.config/xmobar/icons/key.xbm/></fc> %kbd% | %default:Master% | %date% "
+   , template = " %StdinReader% }{| %pomobar% | %YBBN% | %multicpu% | %memory% | %enp0s25% | %wlp3s0% | %battery0% | <fc=#aaaaaa><icon=/home/rcintra/.config/xmobar/icons/key.xbm/></fc> %kbd% %locks% | %default:Master% | %date% "
 
    -- general behavior
    , lowerOnStart =     True    -- send to bottom of window stack on start
@@ -43,7 +43,7 @@ Config {
                              ] 36000
 
         -- network activity monitor 
-        ,Run Network "enp0s31f6"  [ "--template" , "<fc=#aaaaaa><icon=/home/rafael/.config/xmobar/icons/ethernet3.xbm/></fc> <tx>kB/s|<rx>kB/s"
+        ,Run Network "enp0s25"  [ "--template" , "<fc=#aaaaaa><icon=/home/rcintra/.config/xmobar/icons/ethernet3.xbm/></fc> <tx>kB/s|<rx>kB/s"
                                     , "--Low"      , "1000"       -- units: kB/s
                                     , "--High"     , "5000"       -- units: kB/s
                                     , "--low"      , "darkgreen"
@@ -52,7 +52,7 @@ Config {
                                     , "--minwidth" , "3"
                                     ] 10
 
-        ,Run Network "wlp4s0"  [ "--template" , "<fc=#aaaaaa><icon=/home/rafael/.config/xmobar/icons/wifi.xbm/></fc> <tx>kB/s|<rx>kB/s"
+        ,Run Network "wlp3s0"  [ "--template" , "<fc=#aaaaaa><icon=/home/rcintra/.config/xmobar/icons/wifi.xbm/></fc> <tx>kB/s|<rx>kB/s"
                                     , "--Low"      , "1000"       -- units: kB/s
                                     , "--High"     , "5000"       -- units: kB/s
                                     , "--low"      , "darkgreen"
@@ -62,7 +62,7 @@ Config {
                                     ] 10
 
         -- cpu activity monitor
-        , Run MultiCpu       [ "--template" , "<fc=#aaaaaa><icon=/home/rafael/.config/xmobar/icons/processor.xbm/></fc> <autovbar>"
+        , Run MultiCpu       [ "--template" , "<fc=#aaaaaa><icon=/home/rcintra/.config/xmobar/icons/processor.xbm/></fc> <autovbar>"
                              , "--Low"      , "50"         -- units: %
                              , "--High"     , "85"         -- units: %
                              , "--low"      , "darkgreen"
@@ -72,7 +72,7 @@ Config {
                              ] 10
 
         -- memory usage monitor
-        , Run Memory         [ "--template" ,"<fc=#aaaaaa><icon=/home/rafael/.config/xmobar/icons/mem.xbm/></fc> <usedratio>%"
+        , Run Memory         [ "--template" ,"<fc=#aaaaaa><icon=/home/rcintra/.config/xmobar/icons/mem.xbm/></fc> <usedratio>%"
                              , "--Low"      , "20"        -- units: %
                              , "--High"     , "90"        -- units: %
                              , "--low"      , "darkgreen"
@@ -98,11 +98,11 @@ Config {
 
         -- volume
         , Run Volume "default" "Master" [
-                                          "--template" , "<fc=#aaaaaa><icon=/home/rafael/.config/xmobar/icons/speaker2.xbm/></fc> <volume>% <status>"
+                                          "--template" , "<fc=#aaaaaa><icon=/home/rcintra/.config/xmobar/icons/speaker2.xbm/></fc> <volume>% <status>"
                                         ] 10
         -- battery
         , Run BatteryN ["BAT0"]
-                             [ "--template" , "<fc=#aaaaaa><icon=/home/rafael/.config/xmobar/icons/battery.xbm/></fc> 0:<acstatus>"
+                             [ "--template" , "<fc=#aaaaaa><icon=/home/rcintra/.config/xmobar/icons/battery.xbm/></fc> <acstatus>"
                              , "--Low"      , "50"        -- units: %
                              , "--High"     , "90"        -- units: %
                              , "--low"      , "darkred"
@@ -118,22 +118,11 @@ Config {
                                        , "-i" , "<fc=#00C000>Charged</fc>"
                              ] 600 "battery0"
 
-        , Run BatteryN ["BAT1"]
-                             [ "--template" , "1:<acstatus>"
-                             , "--Low"      , "50"        -- units: %
-                             , "--High"     , "90"        -- units: %
-                             , "--low"      , "darkred"
-                             , "--normal"   , "darkorange"
-                             , "--high"     , "green"
+        -- locks (caps, num, scroll)
+        , Run Locks
 
-                             , "--" -- battery specific options
-                                       -- discharging status
-                                       , "-o" , "<left>% (<timeleft>)"
-                                       -- AC "on" status
-                                       , "-O" , "<fc=#dAA520>Charging</fc>"
-                                       -- charged status
-                                       , "-i" , "<fc=#00C000>Charged</fc>"
-                             ] 600 "battery1"
+        -- Pomobar
+        , Run CommandReader "killall pomobar; ~/.local/bin/pomobar --terminatedShellCmd='mpg123 -q ~/bin/share/alarmwatch.mp3'" "pomobar"
         ]
 
 }
