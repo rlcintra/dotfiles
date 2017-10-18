@@ -316,8 +316,23 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   (setq org-agenda-files '("~/Dropbox/org/"))
+
+  ;; workaround for spacemacs bug (https://github.com/syl20bnr/spacemacs/issues/9549#issuecomment-327788403)
+  (require 'helm-bookmark)
+
+  (setq-default fill-column 120)
+
+  ;; turn fill column indicator on
+  ;;(add-hook 'after-change-major-mode-hook 'fci-mode)
+  (add-hook 'elm-mode-hook 'fci-mode)
+  (add-hook 'text-mode-hook 'fci-mode)
+
+  ;; mu4e configuration
+  ;; (load "~/.spacemacs_mu4e.el")
+
+  ;; use chromium as default browser
   (setq browse-url-browser-function 'browse-url-generic
-        browse-url-generic-program "chromium")
+        browse-url-generic-program "~/bin/chromium_new")
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
