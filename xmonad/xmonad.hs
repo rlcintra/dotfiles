@@ -17,7 +17,7 @@ import qualified Data.Map        as M
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
 --
-myTerminal      = "termite"
+myTerminal      = "termite -e /usr/bin/fish"
 
 -- Whether focus follows the mouse pointer.
 myFocusFollowsMouse :: Bool
@@ -149,10 +149,10 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm              , xK_Insert  ), spawn "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous")
 
     -- Pomobar
-    , ((modm  , xK_F5      ), spawn "dbus-send --print-reply --dest=org.pomobar /org/pomobar org.Pomobar.startTimerSwitch array:int16:25,10,5")
-    , ((modm  , xK_F6      ), spawn "dbus-send --print-reply --dest=org.pomobar /org/pomobar org.Pomobar.pauseResumeTimer")
-    , ((modm  , xK_F7      ), spawn "dbus-send --print-reply --dest=org.pomobar /org/pomobar org.Pomobar.timerAddMin int16:1")
-    , ((modm  , xK_F8      ), spawn "dbus-send --print-reply --dest=org.pomobar /org/pomobar org.Pomobar.timerAddMin int16:-1")
+    , ((modm              , xK_F5      ), spawn "dbus-send --print-reply --dest=org.pomobar /org/pomobar org.Pomobar.startTimerSwitch array:int16:25,15,5]")
+    , ((modm              , xK_F6      ), spawn "dbus-send --print-reply --dest=org.pomobar /org/pomobar org.Pomobar.pauseResumeTimer")
+    , ((modm              , xK_F7      ), spawn "dbus-send --print-reply --dest=org.pomobar /org/pomobar org.Pomobar.timerAddMin int16:-1")
+    , ((modm              , xK_F8      ), spawn "dbus-send --print-reply --dest=org.pomobar /org/pomobar org.Pomobar.timerAddMin int16:1")
 
     -- ScratchPad
     --, ((modm              , xK_s     ), scratchpadSpawnActionTerminal $ myTerminal ++ " -r scratchpad")
