@@ -338,6 +338,10 @@ you should place your code here."
    browse-url-generic-program "~/bin/chromium_new")
   )
 
+  ;; Perl
+  (add-to-list 'auto-mode-alist '("\\.t$" . perl-mode))
+
+
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
 (custom-set-variables
