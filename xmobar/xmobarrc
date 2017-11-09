@@ -12,7 +12,7 @@ Config {
    -- layout
    , sepChar =  "%"   -- delineator between plugin names and straight text
    , alignSep = "}{"  -- separator between left-right alignment
-   , template = " %StdinReader% }{| %pomobar% | %YBBN% | %multicpu% | %memory% | %enp0s25% | %wlp3s0% | %battery0% | <fc=#aaaaaa><icon=/home/rcintra/.config/xmobar/icons/key.xbm/></fc> %kbd% %locks% | %default:Master% | %date% "
+   , template = " %StdinReader% }{| %pomobar% | %YBBN% | %multicpu% | %memory% | %enp0s25% | %wlp3s0% | %battery0% | <fc=#aaaaaa><icon=/home/rcintra/.config/xmobar/icons/key.xbm/></fc> %kbd% <fc=black,red>%locks%</fc> | %default:Master% | %date% "
 
    -- general behavior
    , lowerOnStart =     True    -- send to bottom of window stack on start
