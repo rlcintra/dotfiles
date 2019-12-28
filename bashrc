@@ -44,13 +44,14 @@ PS1='[\u@\h \W]\$ '
 #    __vte_prompt_command
 #fi
 
-export PATH=$PATH:~/.local/bin:~/.cabal/bin
+export PATH=$PATH:~/.local/bin:~/.cabal/bin:/usr/local/bin
 
 export KARAF_HOME_DEV=/home/rafael/temp/apache-karaf
-
 
 PATH="/home/rcintra/perl5/bin${PATH:+:${PATH}}"; export PATH;
 PERL5LIB="/home/rcintra/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
 PERL_LOCAL_LIB_ROOT="/home/rcintra/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
 PERL_MB_OPT="--install_base \"/home/rcintra/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/home/rcintra/perl5"; export PERL_MM_OPT;
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
