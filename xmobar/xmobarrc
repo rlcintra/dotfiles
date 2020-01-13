@@ -12,7 +12,8 @@ Config {
    -- layout
    , sepChar =  "%"   -- delineator between plugin names and straight text
    , alignSep = "}{"  -- separator between left-right alignment
-   , template = " %StdinReader% }{ %YBBN% | %pomobar% | %multicpu% | %memory% | %enp0s31f6% | %wlp4s0% | %battery0% %battery1% | <fc=#aaaaaa><icon=/home/rafael/.config/xmobar/icons/key.xbm/></fc> %kbd% %locks% | %default:Master% | %date% "
+   -- , template = " %StdinReader% }{ %YBBN% | %pomobar% | %multicpu% | %memory% | %enp0s31f6% | %wlp4s0% | %battery0% %battery1% | <fc=#aaaaaa><icon=/home/rafael/.config/xmobar/icons/key.xbm/></fc> %kbd% %locks% | %default:Master% | %date% "
+   , template = " %StdinReader% }{ %pomobar% | %multicpu% | %memory% | %enp0s31f6% | %wlp0s20f3% | %battery0% | <fc=#aaaaaa><icon=/home/rafael/.config/xmobar/icons/key.xbm/></fc> %kbd% <fc=black,red>%locks%</fc> | %date% "
 
    -- general behavior
    , lowerOnStart =     True    -- send to bottom of window stack on start
@@ -37,10 +38,14 @@ Config {
    --   color can be set by enclosing in <fc></fc> tags. For more details
    --   see http://projects.haskell.org/xmobar/#system-monitor-plugins.
    , commands = 
+   	[
 
-        -- weather monitor
-        [ Run Weather "YBBN" [ "--template", "<skyCondition> | <fc=#4682B4><tempC></fc>°C | <fc=#4682B4><rh></fc>% | <fc=#4682B4><pressure></fc>hPa"
-                             ] 36000
+        -- time and date indicator 
+        --   (%F = y-m-d date, %a = day of week, %T = h:m:s time)
+        Run Date           "<fc=#ABABAB>%d/%m %H:%M</fc>" "date" 10 
+
+        -- stdin reader
+        , Run StdinReader
 
         -- network activity monitor 
         ,Run Network "enp0s31f6"  [ "--template" , "<fc=#aaaaaa><icon=/home/rafael/.config/xmobar/icons/ethernet3.xbm/></fc> <tx>kB/s|<rx>kB/s"
@@ -52,7 +57,7 @@ Config {
                                     , "--minwidth" , "3"
                                     ] 10
 
-        ,Run Network "wlp4s0"  [ "--template" , "<fc=#aaaaaa><icon=/home/rafael/.config/xmobar/icons/wifi.xbm/></fc> <tx>kB/s|<rx>kB/s"
+        ,Run Network "wlp0s20f3"  [ "--template" , "<fc=#aaaaaa><icon=/home/rafael/.config/xmobar/icons/wifi.xbm/></fc> <tx>kB/s|<rx>kB/s"
                                     , "--Low"      , "1000"       -- units: kB/s
                                     , "--High"     , "5000"       -- units: kB/s
                                     , "--low"      , "darkgreen"
@@ -80,26 +85,15 @@ Config {
                              , "--high"     , "darkred"
                              ] 10
 
-        -- swap memory
-        -- , Run Swap          [] 10
-
-        -- time and date indicator 
-        --   (%F = y-m-d date, %a = day of week, %T = h:m:s time)
-        , Run Date           "<fc=#ABABAB>%d/%m %H:%M</fc>" "date" 10 
-
         -- keyboard layout indicator
         , Run Kbd               []
         -- , Run Kbd            [ ("us(dvorak)" , "<fc=#00008B>DV</fc>")
         --                      , ("us"         , "<fc=#8B0000>US</fc>")
         --                      ]
 
-        -- stdin reader
-        , Run StdinReader
+        -- locks (caps, num, scroll)
+        , Run Locks
 
-        -- volume
-        , Run Volume "default" "Master" [
-                                          "--template" , "<fc=#aaaaaa><icon=/home/rafael/.config/xmobar/icons/speaker2.xbm/></fc> <volume>% <status>"
-                                        ] 10
         -- battery
         , Run BatteryN ["BAT0"]
                              [ "--template" , "<fc=#aaaaaa><icon=/home/rafael/.config/xmobar/icons/battery.xbm/></fc> 0:<acstatus>"
@@ -117,29 +111,8 @@ Config {
                                        -- charged status
                                        , "-i" , "<fc=#00C000>Charged</fc>"
                              ] 600 "battery0"
-
-        , Run BatteryN ["BAT1"]
-                             [ "--template" , "1:<acstatus>"
-                             , "--Low"      , "50"        -- units: %
-                             , "--High"     , "90"        -- units: %
-                             , "--low"      , "darkred"
-                             , "--normal"   , "darkorange"
-                             , "--high"     , "green"
-
-                             , "--" -- battery specific options
-                                       -- discharging status
-                                       , "-o" , "<left>% (<timeleft>)"
-                                       -- AC "on" status
-                                       , "-O" , "<fc=#dAA520>Charging</fc>"
-                                       -- charged status
-                                       , "-i" , "<fc=#00C000>Charged</fc>"
-                             ] 600 "battery1"
-
-        -- locks (caps, num, scroll)
-        , Run Locks
-
         -- Pomobar
-        , Run CommandReader "killall pomobar; ~/.local/bin/pomobar --terminatedShellCmd='mpg123 -q ~/bin/share/alarmwatch.mp3'" "pomobar"
+        , Run CommandReader "killall pomobar; ~/bin/pomobar --terminatedShellCmd='mpg123 -q ~/bin/share/alarmwatch.mp3'" "pomobar"
         ]
 
 }
