@@ -42,6 +42,10 @@ kbdd
 
 dropbox-cli start &
 
+# required for Evolution
+eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
+export SSH_AUTH_SOCK
+
 # compositing
 #xcompmgr -c &
 

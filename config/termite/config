@@ -8,7 +8,8 @@ dynamic_title = true
 urgent_on_bell = true
 clickable_url = true
 #font = Hack 12px
-font = DejaVu Sans Mono for Powerline 9
+font = DejaVu Sans Mono for Powerline 10
+
 #font = Monospace 9
 scrollback_lines = 10000
 search_wrap = true
@@ -22,7 +23,7 @@ cursor_blink = system
 cursor_shape = block
 
 # $BROWSER is used by default
-browser = chromium
+browser = firefox
 
 # set size hints for the window
 #size_hints = false
