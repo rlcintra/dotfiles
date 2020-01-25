@@ -3,6 +3,9 @@ call plug#begin('~/.vim/plugged')
 Plug '/usr/bin/fzf'
 Plug 'junegunn/fzf.vim'
 
+Plug 'vim-airline/vim-airline'
+Plug 'preservim/nerdtree'
+
 " Initialize plugin system
 call plug#end()
 
@@ -26,3 +29,4 @@ imap <c-x><c-l> <plug>(fzf-complete-line)
 nmap <leader>pf :Files<CR>
 nmap <leader>bb :Buffers<CR>
 nmap <leader>/ :Rg<CR>
+nmap <leader>ft :NERDTreeToggle<CR>
