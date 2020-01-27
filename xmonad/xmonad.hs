@@ -158,7 +158,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- xrandr (for Lenovo X260)
     , ((modm .|. shiftMask, xK_F1     ), spawn "~/.screenlayout/laptop.sh")
-    , ((modm .|. shiftMask, xK_F2     ), spawn "~/.screenlayout/dock_displayport.sh")
+    , ((modm .|. shiftMask, xK_F2     ), spawn "~/.screenlayout/dock_hdmi.sh")
     , ((modm .|. shiftMask, xK_F3     ), spawn "~/.screenlayout/standup_desk.sh")
     ]
     ++
