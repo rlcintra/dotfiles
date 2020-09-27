@@ -10,6 +10,8 @@ Plug '/usr/bin/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'itchyny/lightline.vim'
 
+Plug 'dense-analysis/ale'
+
 " Initialize plugin system
 call plug#end()
 
@@ -31,6 +33,7 @@ imap <c-x><c-j> <plug>(fzf-complete-file)
 imap <c-x><c-l> <plug>(fzf-complete-line)
 
 nmap <leader>pf :Files<CR>
+nmap <leader>pt :NERDTreeToggle<CR>
 nmap <leader>bb :Buffers<CR>
 nmap <leader>/ :Rg<CR>
 

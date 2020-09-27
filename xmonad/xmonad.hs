@@ -15,7 +15,7 @@ import qualified Data.Map        as M
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
 --
-myTerminal      = "termite -e /usr/bin/fish"
+myTerminal      = "termite"
 
 -- Whether focus follows the mouse pointer.
 myFocusFollowsMouse :: Bool
@@ -125,7 +125,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. shiftMask, xK_q     ), io (exitWith ExitSuccess))
 
     -- Restart xmonad
-    , ((modm              , xK_q     ), spawn "xmonad --recompile; xmonad --restart")
+    , ((modm .|. shiftMask, xK_x     ), spawn "xmonad --recompile; xmonad --restart")
 
     -- Run xmessage with a summary of the default keybindings (useful for beginners)
     --, ((modMask .|. shiftMask, xK_slash ), spawn ("echo \"" ++ help ++ "\" | xmessage -file -"))
@@ -159,14 +159,15 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- xrandr (for Lenovo X260)
     , ((modm .|. shiftMask, xK_F1     ), spawn "~/.screenlayout/laptop.sh")
     , ((modm .|. shiftMask, xK_F2     ), spawn "~/.screenlayout/dock_hdmi.sh")
-    , ((modm .|. shiftMask, xK_F3     ), spawn "~/.screenlayout/standup_desk.sh")
+    , ((modm .|. shiftMask, xK_F3     ), spawn "~/.screenlayout/dock_dual_monitor.sh")
+    , ((modm .|. shiftMask, xK_F4     ), spawn "~/.screenlayout/dock_only_2nd_monitor.sh")
     ]
     ++
 
     --
     -- mod-[1..9], Switch to workspace N
     -- mod-shift-[1..9], Move client to workspace N
-    --
+
     [((m .|. modm, k), windows $ f i)
         | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]
         , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
