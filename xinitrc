@@ -40,8 +40,6 @@ setxkbmap -model pc104 -layout us,us -variant ,intl -option 'grp:alt_caps_toggle
 # reminds keyboard layout per window
 kbdd
 
-dropbox-cli start &
-
 # compositing
 #xcompmgr -c &
 

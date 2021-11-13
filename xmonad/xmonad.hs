@@ -15,8 +15,7 @@ import qualified Data.Map        as M
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
 --
---myTerminal      = "termite -e /usr/bin/fish"
-myTerminal      = "termite"
+myTerminal      = "alacritty"
 
 -- Whether focus follows the mouse pointer.
 myFocusFollowsMouse :: Bool
@@ -126,13 +125,13 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. shiftMask, xK_q     ), io (exitWith ExitSuccess))
 
     -- Restart xmonad
-    , ((modm              , xK_q     ), spawn "xmonad --recompile; xmonad --restart")
+    , ((modm .|. shiftMask, xK_x     ), spawn "xmonad --recompile; xmonad --restart")
 
     -- Run xmessage with a summary of the default keybindings (useful for beginners)
     --, ((modMask .|. shiftMask, xK_slash ), spawn ("echo \"" ++ help ++ "\" | xmessage -file -"))
 
     -- Print screen
-    , ((0                 , xK_Print ), spawn "scrot ~/temp/screenshot-%Y-%m-%d-%H:%M:%S.png")
+    , ((0                 , xK_Print ), spawn "scrot ~/temp/screenshot-%Y-%m-%d-%H:%M:%S.png -e 'gimp $f'")
 
     -- Lock screen
     , ((modm .|. shiftMask, xK_l     ), spawn "slock")
@@ -159,8 +158,9 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- xrandr (for Lenovo X260)
     , ((modm .|. shiftMask, xK_F1     ), spawn "~/.screenlayout/laptop.sh")
-    , ((modm .|. shiftMask, xK_F2     ), spawn "~/.screenlayout/dock_displayport.sh")
-    , ((modm .|. shiftMask, xK_F3     ), spawn "~/.screenlayout/standup_desk.sh")
+    , ((modm .|. shiftMask, xK_F2     ), spawn "~/.screenlayout/hdmi_home.sh")
+    , ((modm .|. shiftMask, xK_F3     ), spawn "~/.screenlayout/dock_displayport.sh")
+    , ((modm .|. shiftMask, xK_F4     ), spawn "~/.screenlayout/hdmi_tv.sh")
     ]
     ++
 

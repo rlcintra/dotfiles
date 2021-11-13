@@ -1,7 +1,8 @@
 Config { 
 
    -- appearance
-     font =         "xft:Bitstream Vera Sans Mono:size=9:bold:antialias=true"
+   font =         "xft:Bitstream Vera Sans Mono:size=9:bold:antialias=true"
+   -- font =         "xft:Bitstream Vera Sans Mono:size=4.5:bold:antialias=true"
    --, bgColor =      "black"
    , bgColor =      "#292929"
    , fgColor =      "#646464"
@@ -13,7 +14,7 @@ Config {
    , sepChar =  "%"   -- delineator between plugin names and straight text
    , alignSep = "}{"  -- separator between left-right alignment
    -- , template = " %StdinReader% }{ %YBBN% | %pomobar% | %multicpu% | %memory% | %enp0s31f6% | %wlp4s0% | %battery0% %battery1% | <fc=#aaaaaa><icon=/home/rafael/.config/xmobar/icons/key.xbm/></fc> %kbd% %locks% | %default:Master% | %date% "
-   , template = " %StdinReader% }{ %pomobar% | %multicpu% | %memory% | %enp0s31f6% | %wlp0s20f3% | %battery0% | <fc=#aaaaaa><icon=/home/rafael/.config/xmobar/icons/key.xbm/></fc> %kbd% <fc=black,red>%locks%</fc> | %date% "
+   , template = " %StdinReader% }{ %pomobar% | %multicpu% | %memory% | %enp0s31f6% | %wlp0s20f3% | %battery0% | <fc=#aaaaaa><icon=/home/rafael/.config/xmobar/icons/key.xbm/></fc> %kbd% <fc=black,red>%locks%</fc> | %default:Master% | %date% "
 
    -- general behavior
    , lowerOnStart =     True    -- send to bottom of window stack on start
@@ -94,6 +95,11 @@ Config {
         -- locks (caps, num, scroll)
         , Run Locks
 
+        -- volume
+        , Run Volume "default" "Master" [
+                                          "--template" , "<fc=#aaaaaa><icon=/home/rafael/.config/xmobar/icons/speaker2.xbm/></fc> <volume>% <status>"
+                                        ] 10
+
         -- battery
         , Run BatteryN ["BAT0"]
                              [ "--template" , "<fc=#aaaaaa><icon=/home/rafael/.config/xmobar/icons/battery.xbm/></fc> 0:<acstatus>"
@@ -112,7 +118,7 @@ Config {
                                        , "-i" , "<fc=#00C000>Charged</fc>"
                              ] 600 "battery0"
         -- Pomobar
-        , Run CommandReader "killall pomobar; ~/bin/pomobar --terminatedShellCmd='mpg123 -q ~/bin/share/alarmwatch.mp3'" "pomobar"
+        , Run CommandReader "killall pomobar; ~/bin/pomobar --terminatedShellCmd='mpg123 -f 8000 -q ~/bin/share/alarmwatch.mp3'" "pomobar"
         ]
 
 }
